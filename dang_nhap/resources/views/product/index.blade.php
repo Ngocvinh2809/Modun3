@@ -1,5 +1,7 @@
 @extends('dashboard')
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
     <div class="container">
         <h1 class="text-center">Danh sách Sản Phẩm</h1>
         <div class="col-12">
@@ -10,7 +12,11 @@
                 </p>
             @endif
         </div>
-        <a href="{{ route('product.create') }}" class="btn btn-primary">Thêm Sản Phẩm</a>
+        <a href="{{ route('product.create') }}" class="btn btn-primary">
+            <i class="bi bi-person-plus"></i>
+            Thêm Sản Phẩm
+
+        </a>
         <hr />
         <table class="table table-bordered" border="2" style="width: 1000px">
 
@@ -30,7 +36,7 @@
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $product->name }}</td>
                         <td >
-                            <img src="{{asset('public/uploads/login/'.$product->image)}} "height="120px" width="120px">
+                            <img src="{{asset('public/uploads/login/'.$product->image)}}" height="120px" width="120px">
                         </td>
                         <td>{{ $product->amount }}</td>
                         {{-- <td>

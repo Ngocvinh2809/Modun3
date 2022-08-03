@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div>
-                                    <h4 class="header-title mb-3">Welcome !</h4>
+                                    {{-- <h4 class="header-title mb-3">Welcome !</h4> --}}
                                     
                                 </div>
                                

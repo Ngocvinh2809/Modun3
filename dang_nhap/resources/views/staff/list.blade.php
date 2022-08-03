@@ -1,5 +1,6 @@
 @extends('dashboard')
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <div class="container">
         <h1 class="text-center">Danh sách nhân viên</h1>
         <div class="col-12">
@@ -10,7 +11,7 @@
                 </p>
             @endif
         </div>
-        <a href="{{ route('staff.create') }}" class="btn btn-primary">Thêm nhân viên</a>
+        <a href="{{ route('staff.create') }}" class="btn btn-primary"><i class="bi bi-person-plus"></i>Thêm nhân viên</a>
         <hr />
         <table class="table table-bordered" border="2" style="width: 1000px">
 
@@ -56,4 +57,5 @@
             </tbody>
         </table>
     </div>
+    
 @endsection

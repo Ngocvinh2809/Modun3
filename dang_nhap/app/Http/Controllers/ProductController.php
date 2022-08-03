@@ -20,17 +20,19 @@ class ProductController extends Controller
     }
     public function store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|max:255',
-        //     'phone' => 'required|max:11',
-        //     'email' => 'required|email|unique',
-        //     'image' => 'required',
-        // ],[
-        //     'name' => 'Bạn chưa nhập Tên',
-        //     'phone' => 'Bạn chưa nhập Số Điện Thoại',
-        //     'email' => 'Bạn chưa nhập Email',
-        //     'image' => 'Bạn chưa nhập ảnh',
-        // ]);
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'image' => 'required',
+            'amount' => 'required|max:11',
+            'price' => 'required',
+        ],[
+            'name.required' => 'Bạn chưa nhập Tên',
+            'name.max' => 'Tên quá dài',
+            'image.required' => 'Bạn chưa nhập ảnh',
+            'amount.required' => 'Bạn chưa nhập số lượng',
+            'amount.max' => 'Số lượng quá dài',
+            'price.required' => 'Bạn chưa nhập giá',
+        ]);
 
         $product_model = new ProductModel();
         $product_model->name = $request->input('name');

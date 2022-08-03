@@ -5,7 +5,7 @@
             </div>
             <div class="user-info">
                 <a href="#">Stanley Jones</a>
-                <p class="text-muted m-0">Administrator</p>
+                <p class="text-muted m-0">Quản Lý</p>
             </div>
         </div>
 <!--- Sidemenu -->
@@ -13,19 +13,19 @@
 
     <ul class="metismenu" id="side-menu">
 
-        <li class="menu-title">Navigation</li>
+        {{-- <li class="menu-title">Navigation</li> --}}
 
         <li>
-            <a href="index.html">
+            <a href="#">
                 <i class="ti-home"></i>
-                <span> Dashboard </span>
+                <span> Trang Chủ </span>
             </a>
         </li>
 
         <li>
             <a href="javascript: void(0);">
                 <i class="ti-light-bulb"></i>
-                <span> Components </span>
+                <span> Thành Phần </span>
                 <span class="menu-arrow"></span>
             </a>
             <ul class="nav-second-level" aria-expanded="false">
@@ -44,15 +44,15 @@
                 <span class="menu-arrow"></span>
             </a>
             <ul class="nav-second-level" aria-expanded="false">
+                <li><a href="{{route('cart.index')}}">Cửa Hàng</a></li>
                 <li><a href="{{route('product.index')}}">Sản Phẩm</a></li>
-                <li><a href="#">Giỏ Hàng</a></li>
             </ul>
         </li>
 
         <li>
-            <a href="typography.html">
-                <i class="ti-spray"></i>
-                <span> Typography </span>
+            <a href="#">
+                <i class="bi bi-caret-right-square"></i>
+                <span> Kiểu </span>
             </a>
         </li>
         
@@ -62,3 +62,4 @@
 <!-- End Sidebar -->
 <div class="clearfix"></div>
 </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">

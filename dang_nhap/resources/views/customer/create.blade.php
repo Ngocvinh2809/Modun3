@@ -37,10 +37,10 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         {{-- <div class="mb-3"> 
-                <img type="hidden" width="120px" height="100px" id="blah" src="#" alt="your image" /> <br>
-                <input accept="image/*" type='file' id="imgInp" name="image" />
-                <label  class="form-label">Ảnh</label>
-                {{-- <input name="image" type="file" class="form-control-file"> --}}
+                            <img type="hidden" width="120px" height="100px" id="blah" src="#" alt="your image" /> <br>
+                            <input accept="image/*" type='file' id="imgInp" name="image" />
+                            <label  class="form-label">Ảnh</label>
+                            {{-- <input name="image" type="file" class="form-control-file"> --}}
                         {{-- </div> --}}
                         <div class="mb-3">
                             <label for="exampleInputEmail1">Hình ảnh </label>
@@ -81,3 +81,5 @@
 </script>
 
 </html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+

@@ -33,13 +33,23 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required|max:255',
-        //     'phone' => 'required|max:11',
-        //     'day_working' => 'required',
-        //     'image' => 'required',
-        //     'wage' => 'required',
-        // ]);
+        $request->validate([
+            'name' => 'required|max:255',
+            'phone' => 'required|max:11',
+            'day_working' => 'required',
+            'image' => 'required',
+            'address' => 'required',
+            'wage' => 'required',
+        ],[
+            'name.required' =>'Bạn chưa nhập tên',
+            'name.max' =>'Tên quá dài',
+            'phone.required' =>'Bạn chưa nhập số điện thoại',
+            'phone.max' =>'Số điện thoại quá dài',
+            'day_working.required' =>'Bạn chưa nhập ngày làm việc',
+            'image.required' => 'Bạn chưa nhập ảnh',
+            'address.required' =>'Bạn chưa nhập địa chỉ',
+            'wage.required' =>'Bạn chưa nhập số lương',
+        ]);
 
         $staff = new StaffModel();
         $staff->name = $request->input('name');

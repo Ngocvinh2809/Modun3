@@ -20,17 +20,21 @@ class CustomerController extends Controller
     }
     public function store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'name' => 'required|max:255',
-        //     'phone' => 'required|max:11',
-        //     'email' => 'required|email|unique',
-        //     'image' => 'required',
-        // ],[
-        //     'name' => 'Bạn chưa nhập Tên',
-        //     'phone' => 'Bạn chưa nhập Số Điện Thoại',
-        //     'email' => 'Bạn chưa nhập Email',
-        //     'image' => 'Bạn chưa nhập ảnh',
-        // ]);
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'phone' => 'required|max:11',
+            'email' => 'required|email|unique',
+            'image' => 'required',
+        ],[
+            'name.required' => 'Bạn chưa nhập Tên',
+            'name.max' => 'Tên quá dài',
+            'phone.required' => 'Bạn chưa nhập Số Điện Thoại',
+            'phone.max' => 'Số điện thoại quá dài',
+            'email.required' => 'Bạn chưa nhập Email',
+            'email.email' => 'Bạn chưa nhập Email',
+            'email.unique' => 'Email đã tồn tại',
+            'image.required' => 'Bạn chưa nhập ảnh',
+        ]);
     
         $customer = new CustomerModel();
         $customer->name = $request->input('name');

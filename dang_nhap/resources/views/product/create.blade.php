@@ -24,6 +24,7 @@
                         {{-- @method('PUT') --}}
                         <div class="mb-3">
                             <label class="form-label">Tên Sản Phẩm</label>
+                            
                             <input name="name" type="text" class="form-control">
                         </div>
                         @error('name')
@@ -80,3 +81,5 @@
 </script>
 
 </html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+

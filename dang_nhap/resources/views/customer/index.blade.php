@@ -1,5 +1,6 @@
 @extends('dashboard')
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <div class="container">
         <h1 class="text-center">Danh sách khách hàng</h1>
         <div class="col-12">
@@ -10,7 +11,10 @@
                 </p>
             @endif
         </div>
-        <a href="{{ route('customer.create') }}" class="btn btn-primary">Thêm Khách Hàng</a>
+        <a href="{{ route('customer.create') }}" class="btn btn-primary">
+            <i class="bi bi-person-plus"></i>
+             Thêm Khách Hàng
+        </a>
         <hr />
         <table class="table table-bordered" border="2" style="width: 1000px">
 
@@ -53,4 +57,6 @@
             </tbody>
         </table>
     </div>
+   
 @endsection
+

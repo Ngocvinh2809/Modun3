@@ -101,27 +101,27 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                 <!-- item-->
-                <div class="dropdown-header noti-title">
-                    <h6 class="text-overflow m-0">Welcome !</h6>
-                </div>
+                {{-- <div class="dropdown-header noti-title">
+                    {{-- <h6 class="text-overflow m-0">Welcome !</h6> --}}
+                {{-- </div> --}} 
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-outline"></i>
-                    <span>Profile</span>
+                    <span>Trang Cá Nhân</span>
                 </a>
 
                 <!-- item-->
                 <a href="javascript:void(0);" class="dropdown-item notify-item">
                     <i class="mdi mdi-settings-outline"></i>
-                    <span>Settings</span>
+                    <span>Cài Đặt</span>
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                {{-- <a href="javascript:void(0);" class="dropdown-item notify-item">
                     <i class="mdi mdi-lock-outline"></i>
                     <span>Lock Screen</span>
-                </a>
+                </a> --}}
                 
                 <div class="dropdown-divider"></div>
 
@@ -130,25 +130,25 @@
                 
                     <a href="{{route('logout')}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-logout-variant"></i>
-                    <span>Logout</span>
+                    <span>Đăng Xuất</span>
                     </a> 
                
 
             </div>
         </li>
 
-        <li class="dropdown notification-list">
+        {{-- <li class="dropdown notification-list">
             <a href="javascript:void(0);" class="nav-link right-bar-toggle">
                 <i class="mdi mdi-settings-outline noti-icon"></i>
             </a>
-        </li>
+        </li> --}}
 
 
     </ul>
 
     <!-- LOGO -->
     <div class="logo-box">
-        <a href="index.html" class="logo text-center logo-dark">
+        <a href="#" class="logo text-center logo-dark">
             <span class="logo-lg">
                 <img src="{{asset('assets\images\logo-dark.png')}}" alt="" height="26">
                 <!-- <span class="logo-lg-text-dark">Simple</span> -->
@@ -159,7 +159,7 @@
             </span>
         </a>
 
-        <a href="index.html" class="logo text-center logo-light">
+        <a href="#" class="logo text-center logo-light">
             <span class="logo-lg">
                 <img src="{{asset('assets\images\logo-light.png')}}" alt="" height="26">
                 <!-- <span class="logo-lg-text-light">Simple</span> -->
@@ -194,3 +194,4 @@
         </li>
     </ul>
 </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">

@@ -28,10 +28,10 @@ class LoginController extends Controller
             'password' => 'required',
             'password_confirmation' => 'required',
         ], [
-            'name.required' => 'Nhập Tên',
-            'email.required' => 'Nhập email',
-            'password.required' => 'Nhập mật khẩu',
-            'password_confirmation.required' => 'Nhập mật khẩu',
+            'name.required' => 'Bạn chưa nhập tên',
+            'email.required' => 'Bạn chưa nhập email',
+            'password.required' => 'Bạn chưa nhập mật khẩu',
+            'password_confirmation.required' => 'Bạn chưa nhập lại mật khẩu',
         ]);
         $user = new User();
         $user->name = $request->name;
@@ -63,7 +63,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             // Authentication passed...
 
-            return redirect()->route('customer.index');
+            return redirect()->route('product.index');
         }
 
         return redirect()->back();
