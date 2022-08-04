@@ -24,7 +24,7 @@
                         {{-- @method('PUT') --}}
                         <div class="mb-3">
                             <label class="form-label">Tên Sản Phẩm</label>
-                            
+
                             <input name="name" type="text" class="form-control">
                         </div>
                         @error('name')
@@ -52,7 +52,7 @@
                             <label  class="form-label">Ảnh</label>
                             {{-- <input name="image" type="file" class="form-control-file"> --}}
                         {{-- </div> --}}
-                       
+
                         <div class="mb-3">
                             <label class="form-label">Giá</label>
                             <input name="price" type="text" class="form-control">
@@ -82,4 +82,3 @@
 
 </html>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-

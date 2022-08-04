@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Route::get('/dondathang', function () {
+//     return view('dondathang.index');
 // });
 Route::get('login', [LoginController::class, 'showform'])->name('login');
 Route::get('register', [LoginController::class, 'show_register']);
@@ -31,7 +31,7 @@ Route::post('check_login', [LoginController::class, 'login'])->name('check_login
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['PreventBackHistory'])->group(function () {
-        
+
         //san pham
         Route::group(['prefix' => 'product'], function () {
             Route::get('/', [ProductController::class, 'index'])->name('product.index');
@@ -39,7 +39,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/create', [ProductController::class, 'store'])->name('product.store');
             Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
             Route::post('/{id}/edit', [ProductController::class, 'update'])->name('product.update');
-            Route::get('/{id}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+            Route::delete('/{id}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
         });
 
         //khach hang
@@ -49,7 +49,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/create', [CustomerController::class, 'store'])->name('customer.store');
             Route::get('/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
             Route::post('/{id}/edit', [CustomerController::class, 'update'])->name('customer.update');
-            Route::get('/{id}/destroy', [CustomerController::class, 'destroy'])->name('customer.destroy');
+            Route::delete('/{id}/destroy', [CustomerController::class, 'destroy'])->name('customer.destroy');
             Route::get('logout', [LoginController::class, 'logout'])->name('logout');
         });
 
@@ -60,14 +60,14 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/create', [StaffController::class, 'store'])->name('staff.store');
             Route::get('/{id}/edit', [StaffController::class, 'edit'])->name('staff.edit');
             Route::post('/{id}/edit', [StaffController::class, 'update'])->name('staff.update');
-            Route::get('/{id}/destroy', [StaffController::class, 'destroy'])->name('staff.destroy');
+            Route::delete('/{id}/destroy', [StaffController::class, 'destroy'])->name('staff.destroy');
         });
 
 
         Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
         Route::get('/list', [CartController::class, 'list'])->name('cart.list');
         Route::get('/addToCart/{id}', [CartController::class, 'addToCart'])->name('addToCart');
-        Route::get('remove-from-cart/{id}', [CartController::class, 'remove'])->name('remove.from.cart');
+        Route::delete('remove-from-cart/{id}', [CartController::class, 'remove'])->name('remove.from.cart');
         Route::patch('update-cart}', [ProductController::class, 'update'])->name('update.cart');
     });
 });

@@ -20,6 +20,7 @@ class StaffController extends Controller
         $staffs = StaffModel::all();
         return view('staff.list', compact('staffs'));
     }
+
     public function create()
     {
         return view('staff.create');
@@ -33,30 +34,31 @@ class StaffController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator  = $this->validate($request, [
             'name' => 'required|max:255',
             'phone' => 'required|max:11',
             'day_working' => 'required',
-            'image' => 'required',
             'address' => 'required',
             'wage' => 'required',
-        ],[
-            'name.required' =>'Bạn chưa nhập tên',
-            'name.max' =>'Tên quá dài',
-            'phone.required' =>'Bạn chưa nhập số điện thoại',
-            'phone.max' =>'Số điện thoại quá dài',
-            'day_working.required' =>'Bạn chưa nhập ngày làm việc',
-            'image.required' => 'Bạn chưa nhập ảnh',
-            'address.required' =>'Bạn chưa nhập địa chỉ',
-            'wage.required' =>'Bạn chưa nhập số lương',
+        ], [
+            'name.required' => 'Bạn chưa nhập tên',
+            'name.max' => 'Tên quá dài',
+            'phone.required' => 'Bạn chưa nhập số điện thoại',
+            'phone.max' => 'Số điện thoại quá dài',
+            'day_working.required' => 'Bạn chưa nhập ngày làm việc',
+            'address.required' => 'Bạn chưa nhập địa chỉ',
+            'wage.required' => 'Bạn chưa nhập số lương',
         ]);
 
+        // dd(123);
+
         $staff = new StaffModel();
-        $staff->name = $request->input('name');
-        $staff->phone = $request->input('phone');
-        $staff->day_working = $request->input('day_working');
-        $staff->address = $request->input('address');
-        $staff->wage = $request->input('wage');
+        $staff->name = $request->name;
+        $staff->phone = $request->phone;
+        $staff->day_working = $request->day_working;
+        $staff->address = $request->address;
+        $staff->wage = $request->wage;
+        // dd($request);
         $staff->save();
         //dung session de dua ra thong bao
         Session::flash('success', 'Tạo mới thành công');

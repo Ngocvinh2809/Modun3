@@ -190,7 +190,7 @@
                                     <div class="product-item">
                                         <div class="pi-pic">
                                             <img src="public/uploads/login/{{ $product->image }}" alt="ảnh bị lỗi"
-                                                style="with:130px; height:300px">
+                                                style="with:50px; height:300px">
                                             <div class="sale pp-sale">Sale</div>
                                             <div class="icon">
                                                 <i class="icon_heart_alt"></i>

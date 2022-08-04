@@ -34,7 +34,7 @@
                         <td>{{ $staff->phone }}</td>
                         <td>{{ $staff->day_working }}</td>
                         <td>{{ $staff->address }}</td>
-                        <td>{{ $staff->wage }}</td>
+                        <td>{{ ($staff->wage)  }} đ</td>
                         {{-- <td>
                             @if($staff->image)
                                 <img src="{{$staff->image}}" alt="ảnh lỗi" style="width: 120px ; height: 120px">
@@ -49,7 +49,9 @@
                         {{-- <td>{{ $staff->email }}</td> --}}
                         <td>
                             <a href="{{ route('staff.edit', $staff->id) }}" class="btn btn-primary">Sửa</a>
-                            <a href="{{ route('staff.destroy', $staff->id) }}" class="btn btn-danger" onclick="return confirm('Are you sure')">Xóa</a>
+                            <a href="{{ route('staff.destroy', $staff->id) }}" class="btn btn-danger" 
+                                {{-- onclick="return confirm('Are you sure')" --}}
+                                >Xóa</a>
                             {{-- <a href="#" class="btn btn-info">Xem</a> --}}
                         </td>
                     </tr>
@@ -57,5 +59,4 @@
             </tbody>
         </table>
     </div>
-    
 @endsection

@@ -20,12 +20,13 @@ class CustomerController extends Controller
     }
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validator  = $this->validate($request, [
             'name' => 'required|max:255',
             'phone' => 'required|max:11',
-            'email' => 'required|email|unique',
+            'email' => 'required|email|unique:customers',
             'image' => 'required',
-        ],[
+        ]
+        ,[
             'name.required' => 'Bạn chưa nhập Tên',
             'name.max' => 'Tên quá dài',
             'phone.required' => 'Bạn chưa nhập Số Điện Thoại',
@@ -34,7 +35,10 @@ class CustomerController extends Controller
             'email.email' => 'Bạn chưa nhập Email',
             'email.unique' => 'Email đã tồn tại',
             'image.required' => 'Bạn chưa nhập ảnh',
-        ]);
+        ]
+    );
+
+    
     
         $customer = new CustomerModel();
         $customer->name = $request->input('name');
@@ -110,16 +114,17 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         $customer = CustomerModel::findOrFail($id);
-        $image = $customer->image;
+        $customer->destroy($id);
+        return response()->json(['customer' => 'delete successFully']);
 
         // delete image
-        if ($image) {
-            Storage::delete('/public/' . $image);
-        }
-        $customer->delete();
+        // if ($image) {
+        //     Storage::delete('/public/' . $image);
+        // }
+        // $customer->delete();
         //dung session de dua ra thong bao
         Session::flash('success', 'Xóa thành công');
         //xoa xong quay ve trang danh sach customer
-        return redirect()->route('customer.index');
+        // return redirect()->route('customer.index');
     }
 }

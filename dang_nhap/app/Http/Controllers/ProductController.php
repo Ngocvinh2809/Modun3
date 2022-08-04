@@ -111,17 +111,19 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $product_model = ProductModel::findOrFail($id);
-        $image = $product_model->image;
+        $product = ProductModel::findOrFail($id);
+        $product->destroy($id);
+
+        return response()->json(['product' => 'delete successFully']);
 
         // delete image
-        if ($image) {
-            Storage::delete('/public/' . $image);
-        }
-        $product_model->delete();
+        // if ($image) {
+        //     Storage::delete('/public/' . $image);
+        // }
+        // $product_model->delete();
         //dung session de dua ra thong bao
         Session::flash('success', 'Xóa thành công');
         //xoa xong quay ve trang danh sach product_model
-        return redirect()->route('product.index');
+        // return redirect()->route('product.index');
     }
 }

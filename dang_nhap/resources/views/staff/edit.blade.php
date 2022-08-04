@@ -39,7 +39,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Lương</label>
-                            <input name="wage" type="text" class="form-control" value="{{ $staffs->wage }}">
+                            <input name="wage" type="text" class="form-control" value="{{($staffs->wage) }} đ">
                         </div>
                         {{-- <div class="mb-3">
                             <label class="form-label">Ảnh</label>
