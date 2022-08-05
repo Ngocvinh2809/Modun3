@@ -1,4 +1,4 @@
-{{-- {{dd(session()->in validate());}} --}}
+{{-- {{dd(session()->invalidate());}} --}}
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -96,16 +96,26 @@
                                     <div class="select-items">
                                         <table>
                                             <tbody>
-                                                @php $total = 0 @endphp
-                                                @foreach ((array) session('cart') as $id => $details)
-                                                    @php $total += $details['price'] * $details['quantity'] @endphp
-                                                @endforeach
+                                                @php 
+                                                $total = 0;
+                                                $totalAll = 0;
+                                                @endphp
+                                                {{-- @foreach ((array) session('cart') as $id => $details)
+                                                @endforeach --}}
                                                 @if (session('cart'))
-                                                    @foreach (session('cart') as $id => $details)
+                                                @foreach (session('cart') as $id => $details)
+                                                @php 
+                                                $total = $details['price'] * $details['quantity'];
+                                                $totalAll += $total;
+                                                @endphp
+                                                   
+                                                    
+                                            {{-- <img src="{{asset('public/uploads/login/'.$details['img'])}}" alt="lỗi"> --}}
+
                                                         <tr>
                                                             <td class="si-pic"><img
-                                                                    src="asset/img/cart-page/{{ $details['img'] }}"
-                                                                    alt="Ảnh bị lỗi">
+                                                                    src="{{asset($details['img'])}}"
+                                                                    alt="Ảnh bị lỗi" style="with:50px; height:100px">
                                                             </td>
                                                             <td class="si-text">
                                                                 <div class="product-selected">
@@ -125,7 +135,7 @@
                                     </div>
                                     <div class="select-total">
                                         <span>total:</span>
-                                        <h5>{{ number_format($total) }}đ</h5>
+                                        <h5>{{ number_format($totalAll) }}đ</h5>
                                     </div>
                                     <div class="select-button">
                                         <a href="{{ route('cart.list') }}" class="primary-btn view-card">VIEW CARD</a>
@@ -189,7 +199,10 @@
                                 <div class="col-lg-4 col-sm-6">
                                     <div class="product-item">
                                         <div class="pi-pic">
-                                            <img src="public/uploads/login/{{ $product->image }}" alt="ảnh bị lỗi"
+                                          
+                                            <img 
+                                            src="{{asset($product->image)  }}" 
+                                            alt="ảnh bị lỗi"
                                                 style="with:50px; height:300px">
                                             <div class="sale pp-sale">Sale</div>
                                             <div class="icon">

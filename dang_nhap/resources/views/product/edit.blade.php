@@ -32,7 +32,7 @@
                         <div class="mb-3">
                             <label for="exampleInputEmail1">Hình ảnh</label>
                             <input type="file" name="image" class="form-control-file">
-                            <img src="{{ asset('public/uploads/login/' . $product_models->image) }} "height="100px"
+                            <img src="{{asset($product_models->image)}} "height="100px"
                                 width="100px">
                             <span style="color:red;">
                                 @error('image')

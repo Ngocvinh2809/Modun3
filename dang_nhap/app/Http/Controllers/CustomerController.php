@@ -37,28 +37,19 @@ class CustomerController extends Controller
             'image.required' => 'Bạn chưa nhập ảnh',
         ]
     );
-
-    
-    
         $customer = new CustomerModel();
         $customer->name = $request->input('name');
         $customer->phone = $request->input('phone');
         $customer->email = $request->input('email');
-        //upload file
-        // if ($request->hasFile('image')) {
-         
-        //     $image = $request->file('image');
-        //     $storedPath = $image->move('images', $image->getClientOriginalName());
-        //     $customer->image           = 'images/' . $image->getClientOriginalName();
-        // }
-        $get_image=$request->image;
-        $path='public/uploads/login/';
-        $get_name_image=$get_image->getClientOriginalName();
-        $name_image=current(explode('.',$get_name_image));
-        $new_image=$name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-        $get_image->move($path,$new_image);
-        $customer->image=$new_image;
-        $request['login_image']=$new_image;
+      
+        if ($request->hasFile('image')) {
+            $file = $request->image;
+            $fileExtension = $file->getClientOriginalExtension(); //jpg,png lấy ra định dạng file và trả về
+            $fileName = time(); //45678908766 tạo tên file theo thời gian
+            $newFileName = $fileName . '.' . $fileExtension; //45678908766.jpg
+            $path = 'storage/' . $request->file('image')->store('image', 'public'); //lưu file vào mục public/images với tê mới là $newFileName
+            $customer->image = $path;
+        }
         $customer->save();
         //dung session de dua ra thong bao
         Session::flash('success', 'Tạo mới thành công');
@@ -77,32 +68,14 @@ class CustomerController extends Controller
         $customer->name = $request->input('name');
         $customer->phone = $request->input('phone');
         $customer->email = $request->input('email');
-        //cap nhat anh
-        // if ($request->hasFile('image')) {
-
-        //     //xoa anh cu neu co
-        //     $currentImg = $customer->image;
-        //     if ($currentImg) {
-        //         Storage::delete('/public/' . $currentImg);
-        //     }
-        //     // cap nhat anh moi
-        //     $image = $request->file('image');
-        //     $path = $image->store('image', 'public');
-        //     $customer->image = $path;
-        // }
-        $get_image=$request->image;
-        if($get_image){
-            $path='public/uploads/login/'.$customer->image;
-            if(file_exists($path)){
-                unlink($path);
-            }
-        $path='public/uploads/login/';
-        $get_name_image=$get_image->getClientOriginalName();
-        $name_image=current(explode('.',$get_name_image));
-        $new_image=$name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-        $get_image->move($path,$new_image);
-        $customer->image=$new_image;
-        $request['login_image']=$new_image;     
+    
+        if ($request->hasFile('image')) {
+            $file = $request->image;
+            $fileExtension = $file->getClientOriginalExtension(); //jpg,png lấy ra định dạng file và trả về
+            $fileName = time(); //45678908766 tạo tên file theo thời gian
+            $newFileName = $fileName . '.' . $fileExtension; //45678908766.jpg
+            $path = 'storage/' . $request->file('image')->store('image', 'public'); //lưu file vào mục public/images với tê mới là $newFileName
+            $customer->image = $path;
         }
         $customer->save();
         //dung session de dua ra thong bao

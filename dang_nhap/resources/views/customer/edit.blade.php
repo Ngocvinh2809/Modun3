@@ -38,7 +38,7 @@
                         <div class="mb-3">
                             <label for="exampleInputEmail1">Hình ảnh</label>
                             <input type="file" name="image" class="form-control-file">
-                            <img src="{{ asset('public/uploads/login/'.$customers->image) }} "height="120px"
+                            <img src="{{asset($customers->image)}} "height="120px"
                                 width="120px">
                             <span style="color:red;">
                                 @error('image')

@@ -37,17 +37,17 @@
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $customer->name }}</td>
                         <td>{{ $customer->phone }}</td>
-                        {{-- <td>
+                        <td>
                             @if ($customer->image)
-                                <img src="{{$customer->image}}" alt="ảnh lỗi" style="width: 120px ; height: 120px">
+                                <img src="{{asset($customer->image)}}" alt="ảnh lỗi" style="width: 120px ; height: 120px">
                             @else
                                 {{'chưa có ảnh'}}
                             @endif
-                        </td> --}}
-                        <td>
-                            <img src="{{ asset('public/uploads/login/' . $customer->image) }} "height="120px"
-                                width="120px">
                         </td>
+                        {{-- <td>
+                            <img src="{{asset($customer->image)}}"height="120px"
+                                width="120px">
+                        </td> --}}
 
                         <td>{{ $customer->email }}</td>
                         <td>
@@ -100,9 +100,7 @@
                                         'Your file has been deleted.',
                                         'success'
                                     )
-
                                     $('.item-' + id).remove();
-
                                 }
                             }
                         });

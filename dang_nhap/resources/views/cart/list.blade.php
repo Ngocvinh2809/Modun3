@@ -86,26 +86,38 @@
                                 </a>
                             </li> --}}
                             <li class="cart-icon"><a href="#">
-                                    <i class="icon_bag_alt"></i>
-                                    <span>{{ count((array) session('cart')) }}</span>
-                                </a>
-                                <div class="cart-hover">
-                                    <div class="select-items">
+                                <i class="icon_bag_alt"></i>
+                                <span>{{ count((array) session('cart')) }}</span>
+                            </a>
+                            <div class="cart-hover">
+                                <div class="select-items">
                                         <table>
                                             <tbody>
-                                                @php $total = 0 @endphp
-                                                @foreach ((array) session('cart') as $id => $details)
-                                                    @php $total += $details['price'] * $details['quantity'] @endphp
-                                                @endforeach
+                                                @php 
+                                                $total = 0;
+                                                $totalAll = 0;
+                                                @endphp
+                                                {{-- @foreach ((array) session('cart') as $id => $details)
+                                                @endforeach --}}
                                                 @if (session('cart'))
-                                                    @foreach (session('cart') as $id => $details)
+                                                @foreach (session('cart') as $id => $details)
+                                                @php 
+                                                $total = $details['price'] * $details['quantity'];
+                                                $totalAll += $total;
+                                                @endphp
+                                                   
+                                                    
+                                            {{-- <img src="{{asset('public/uploads/login/'.$details['img'])}}" alt="lỗi"> --}}
+
                                                         <tr>
                                                             <td class="si-pic"><img
-                                                                    src="asset/img/cart-page/{{ $details['img'] }}"
-                                                                    alt="ảnh bị lỗi" style="width:50px; height:50px;"></td>
+                                                                    src="{{asset($details['img'])}}"
+                                                                    alt="Ảnh bị lỗi">
+                                                            </td>
                                                             <td class="si-text">
                                                                 <div class="product-selected">
-                                                                    <p>{{ $details['price'] }} x {{ $details['quantity'] }}</p>
+                                                                    <p>{{ $details['price'] }} x
+                                                                        {{ $details['quantity'] }}</p>
                                                                     <h6>{{ $details['name'] }}</h6>
                                                                 </div>
                                                             </td>
@@ -113,8 +125,7 @@
                                                                 <i class="ti-close"></i>
                                                             </td>
                                                         </tr>
-                                                        
-                                                        @endforeach
+                                                    @endforeach
                                                 @endif
                                             </tbody>
                                         </table>
@@ -202,7 +213,7 @@
                                         @php $total += $details['price'] * $details['quantity'] @endphp
                                         <tr>
                                             <td class="cart-pic first-row"><img
-                                                src="asset/img/cart-page/{{ $details['img'] }}"
+                                                src="{{asset($details['img'])}}"
                                                 alt="Ảnh bị lỗi">
                                             </td>
                                             <td class="cart-title first-row">

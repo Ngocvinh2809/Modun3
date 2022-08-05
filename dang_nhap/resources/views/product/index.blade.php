@@ -39,7 +39,7 @@
                         <td>{{ $product->name }}</td>
                         <td>
                             <img style="with:100px; height:100px"
-                                src="{{ asset('public/uploads/login/' . $product->image) }}">
+                                src="{{asset($product->image)}}">
                         </td>
                         <td>{{ $product->amount }} cái</td>
                         {{-- <td>

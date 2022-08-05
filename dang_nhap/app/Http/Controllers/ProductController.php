@@ -25,7 +25,7 @@ class ProductController extends Controller
             'image' => 'required',
             'amount' => 'required|max:11',
             'price' => 'required',
-        ],[
+        ], [
             'name.required' => 'Bạn chưa nhập Tên',
             'name.max' => 'Tên quá dài',
             'image.required' => 'Bạn chưa nhập ảnh',
@@ -36,25 +36,17 @@ class ProductController extends Controller
 
         $product_model = new ProductModel();
         $product_model->name = $request->input('name');
-        
-        //upload file
-        // if ($request->hasFile('image')) {
-
-        //     $image = $request->file('image');
-        //     $storedPath = $image->move('images', $image->getClientOriginalName());
-        //     $product_model->image           = 'images/' . $image->getClientOriginalName();
-        // }
-        $get_image = $request->image;
-        $path = 'public/uploads/login/';
-        $get_name_image = $get_image->getClientOriginalName();
-        $name_image = current(explode('.', $get_name_image));
-        $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-        $get_image->move($path, $new_image);
-        $product_model->image = $new_image;
-        $request['login_image'] = $new_image;
-
         $product_model->amount = $request->input('amount');
         $product_model->price = $request->input('price');
+        if ($request->hasFile('image')) {
+            $file = $request->image;
+            $fileExtension = $file->getClientOriginalExtension(); //jpg,png lấy ra định dạng file và trả về
+            $fileName = time(); //45678908766 tạo tên file theo thời gian
+            $newFileName = $fileName . '.' . $fileExtension; //45678908766.jpg
+            $path = 'storage/' . $request->file('image')->store('image', 'public'); //lưu file vào mục public/images với tê mới là $newFileName
+            $product_model->image = $path;
+        }
+
         $product_model->save();
         //dung session de dua ra thong bao
         Session::flash('success', 'Tạo mới thành công');
@@ -71,36 +63,19 @@ class ProductController extends Controller
     {
         $product_model = ProductModel::findOrFail($id);
         $product_model->name = $request->input('name');
-
-        $get_image = $request->image;
-        if ($get_image) {
-            $path = 'public/uploads/login/' . $product_model->image;
-            if (file_exists($path)) {
-                unlink($path);
-            }
-            $path = 'public/uploads/login/';
-            $get_name_image = $get_image->getClientOriginalName();
-            $name_image = current(explode('.', $get_name_image));
-            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
-            $get_image->move($path, $new_image);
-            $product_model->image = $new_image;
-            $request['login_image'] = $new_image;
-        }
         $product_model->amount = $request->input('amount');
         $product_model->price = $request->input('price');
         //cap nhat anh
-        // if ($request->hasFile('image')) {
 
-        //     //xoa anh cu neu co
-        //     $currentImg = $product_model->image;
-        //     if ($currentImg) {
-        //         Storage::delete('/public/' . $currentImg);
-        //     }
-        //     // cap nhat anh moi
-        //     $image = $request->file('image');
-        //     $path = $image->store('image', 'public');
-        //     $product_model->image = $path;
-        // }
+        // $get_image = $request->image;
+        if ($request->hasFile('image')) {
+            $file = $request->image;
+            $fileExtension = $file->getClientOriginalExtension(); //jpg,png lấy ra định dạng file và trả về
+            $fileName = time(); //45678908766 tạo tên file theo thời gian
+            $newFileName = $fileName . '.' . $fileExtension; //45678908766.jpg
+            $path = 'storage/' . $request->file('image')->store('image', 'public'); //lưu file vào mục public/images với tê mới là $newFileName
+            $product_model->image = $path;
+        }
 
         $product_model->save();
         //dung session de dua ra thong bao

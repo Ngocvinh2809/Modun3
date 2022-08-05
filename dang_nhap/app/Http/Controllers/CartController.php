@@ -11,8 +11,9 @@ class CartController extends Controller
     public function index()
     {
 
-        $products = Product::get();
+        $products = Product::all();
         // dd($products);   
+        // session()->invalidate();
         return view('cart.index', compact('products'));
     }
     public function list()
@@ -21,6 +22,8 @@ class CartController extends Controller
     }
     public function addToCart($id)
     {
+        // dd(session('cart'));
+
         $products = Product::findOrFail($id);
         $cart = session()->get('cart', []);
         if (isset($cart[$id])) {
@@ -30,7 +33,7 @@ class CartController extends Controller
                 "name" => $products->name,
                 "quantity" => 1,
                 "price" => $products->price,
-                "img" => $products->img
+                "img" => $products->image
             ];
         }
         session()->put('cart', $cart);
@@ -50,6 +53,7 @@ class CartController extends Controller
     }
     public function update(Request $request)
     {
+
         if($request->id && $request->quantity){
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
